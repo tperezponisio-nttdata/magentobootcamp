@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<schema
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <!-- <table name="employees" resource="default" engine="innodb">
+        <column
+            xsi:type="int"
+            name="id"
+            padding="10"
+            unsigned="true"
+            nullable="false"
+            identity="true"
+            comment="Employee Id" />
+        <column
+            xsi:type="varchar"
+            name="name"
+            nullable="false"
+            length="25"
+            comment="First name" />
+        <column
+            xsi:type="varchar"
+            name="last_name"
+            nullable="false"
+            length="25"
+            comment="Last name" />
+        <column
+            xsi:type="datetime"
+            name="date_of_birth"
+            comment="Date of birth" />
+        <column
+            xsi:type="int"
+            name="id_role"
+            padding="10"
+            unsigned="true"
+            nullable="false"
+            comment="Id role (FK)" />
+        <column
+            xsi:type="int"
+            name="id_role_type"
+            padding="10"
+            unsigned="true"
+            nullable="false"
+            comment="Id role type (FK)" />
+
+        <constraint
+            xsi:type="primary"
+            referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>
+
+        <constraint
+            xsi:type="foreign"
+            referenceId="EMPLOYEES_ROLE_ID_ROLES_ID"
+            table="employees"
+            column="id_role"
+            referenceTable="roles"
+            referenceColumn="id"
+            onDelete="CASCADE" />
+
+        <constraint
+            xsi:type="foreign"
+            referenceId="EMPLOYEES_ROLE_TYPE_ID_ROLES_TYPE_ID"
+            table="employees"
+            column="id_role_type"
+            referenceTable="roles_type"
+            referenceColumn="id"
+            onDelete="CASCADE" />
+    </table>
+
+    <table name="roles" resource="default" engine="innodb">
+        <column
+            xsi:type="int"
+            name="id"
+            padding="10"
+            unsigned="true"
+            nullable="false"
+            identity="true"
+            comment="Role Id" />
+        <column
+            xsi:type="varchar"
+            name="Description"
+            nullable="false"
+            length="25"
+            comment="Role Description" />
+
+        <constraint
+            xsi:type="primary"
+            referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>
+    </table>
+
+    <table name="roles_type" resource="default" engine="innodb">
+        <column
+            xsi:type="int"
+            name="id"
+            padding="10"
+            unsigned="true"
+            nullable="false"
+            identity="true"
+            comment="Role type Id" />
+        <column
+            xsi:type="varchar"
+            name="Description"
+            nullable="false"
+            length="25"
+            comment="Role Type Description" />
+
+        <constraint
+            xsi:type="primary"
+            referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>
+    </table> -->
+
+    
+</schema>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">employees_listing.employees_listing_data_source</item>
+            <item name="deps" xsi:type="string">employees_listing.employees_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Employee</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/form</item>
+            </item>
+        </item>
+    </argument>
+
+    <dataSource name="employees_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">
+                Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">employees_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render" />
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions"
+        class="\Magento\Catalog\Ui\Component\Product\MassAction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected employee(s)?</message>
+                        <title translate="true">Delete employee(s)</title>
+                    </confirm>
+                    <url path="*/*/massDelete" />
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="calculate_average_age">
+                <settings>                    
+                    <url path="*/*/massCalculateAverageAge" />
+                    <type>calculate</type>
+                    <label translate="true">Calculate Average Age</label>
+                </settings>
+            </action>
+        </massaction>
+
+        <bookmark name="bookmarks" />
+        <columnsControls name="columns_controls" />
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">
+                                    Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">
+                                    ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <paging name="listing_paging" />
+    </listingToolbar>
+
+    <columns name="columns">
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+
+        <column name="id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+                <resizeDefaultWidth>25</resizeDefaultWidth>
+            </settings>
+        </column>
+
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+
+        <column name="last_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Last Name</label>
+            </settings>
+        </column>
+
+        <column name="date_of_birth">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Date of birth</label>
+            </settings>
+        </column>
+
+        <column name="age">
+            <settings>
+                <label translate="true">Age</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="role_description">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Role Description</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="role_type_description">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Role Type Description</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="NTTData\Employees\Ui\Component\Column\Actions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+
+</listing>

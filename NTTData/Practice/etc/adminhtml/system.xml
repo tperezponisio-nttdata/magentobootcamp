@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+
+		<tab id="catalog" translate="label" sortOrder="110">
+			<label>Catalog</label>
+		</tab>
+
+		<section id="practice" translate="label" type="text" sortOrder="1" showInDefault="1"
+			showInWebsite="1"
+			showInStore="1">
+			<class>separator-top</class>
+			<label>Practice</label>
+			<tab>catalog</tab>
+			<resource>NTTData_Practice::practice</resource>
+
+			<group id="params" translate="label" type="text" sortOrder="10" showInDefault="1"
+				showInWebsite="1"
+				showInStore="1">
+				<label>Test</label>
+
+				<field id="enabled" translate="label comment" type="select" sortOrder="0"
+					showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable module?</label>
+					<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+				</field>
+
+				<field id="limit" translate="label comment" type="text" sortOrder="1"
+					showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Limit</label>
+					<comment>Ingrese solo números del 1 al 100</comment>
+					<validate>validate-digits-range digits-range-1-100</validate>
+				</field>
+
+				<field id="order_field" translate="label comment" type="select" sortOrder="2"
+					showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Order field</label>
+					<source_model>NTTData\Practice\Model\Config\Source\Attributes</source_model>
+				</field>
+
+				<field id="order_direction" translate="label comment" type="select" sortOrder="3"
+					showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Order direction</label>
+					<source_model>NTTData\Practice\Model\Config\Source\OrderDirection</source_model>
+				</field>
+
+			</group>
+		</section>
+	</system>
+</config>

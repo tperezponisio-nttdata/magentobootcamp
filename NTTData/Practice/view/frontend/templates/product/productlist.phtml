@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @var \NTTData\Practice\Block\Product\Productlist $block
+ */
+
+echo '<h3>' . get_class($block) . '</h3>';
+
+$categoryProducts = $block->getCollection();
+
+if ($categoryProducts != null) {
+    echo '<table>';
+    echo '<tr><th>Nombre</th><th>ID</th><th>URL imagen</th></tr>';
+    foreach ($categoryProducts as $product) {
+        echo '<tr>';
+        echo '<td>' . $product->getName() . '</td>';
+        echo '<td>' . $product->getId() . '</td>';
+        echo '<td>' . $product->getImage() . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+} else {
+    echo 'era null';
+}
+
+?>

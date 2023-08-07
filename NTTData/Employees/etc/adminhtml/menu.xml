@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="NTTData_Employees::employees_menu"
+            title="Employees"
+            module="NTTData_Employees"
+            sortOrder="11"
+            resource="NTTData_Employees::employees_menu"/>
+            
+            <!-- El sortOrder va de 10 en 10, como 0 (Dashboard), 10 (Sales),
+                20 (Products), 30 (Customers), etc. -->
+
+            <add
+            id="NTTData_Employees::employees_admin"
+            title="Manage Employees"
+            module="NTTData_Employees"
+            sortOrder="1"
+            action="nttdata_employees/employees"
+            resource="NTTData_Employees::employees_admin"
+            parent="NTTData_Employees::employees_menu"/>
+        
+    </menu>
+</config>

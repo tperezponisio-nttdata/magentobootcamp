@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--data
+    provider de la grid -->
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="employees_listing_data_source" xsi:type="string">
+                    NTTData\Employees\Model\ResourceModel\Employees\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Asi estaba originalmente, antes de intentar lo de los join -->
+
+    <!-- <virtualType name="NTTData\Employees\Model\ResourceModel\Employees\Grid\Collection"
+        type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">employees</argument>
+            <argument name="resourceModel" xsi:type="string">
+                NTTData\Employees\Model\ResourceModel\Employees</argument>
+        </arguments>
+    </virtualType> -->
+
+    <!--redefino
+    la collection para ver lo de los join-->
+
+    <type name="NTTData\Employees\Model\ResourceModel\Employees\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">employees</argument>
+            <argument name="eventPrefix" xsi:type="string">employees_grid_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">employees_grid_collection</argument>
+            <argument name="resourceModel"
+                xsi:type="string">NTTData\Employees\Model\ResourceModel\Employees</argument>
+        </arguments>
+    </type>
+
+</config>

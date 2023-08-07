@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<page
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    layout="1column"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <css src="NTTData_Practice/css/test.css" />
+        <script src="NTTData_Practice/js/test.js" />
+    </head>
+
+    <referenceContainer name="content">
+        <!-- container product list que hace referencia a content -->
+        <container name="productlist" htmlTag="div" htmlClass="productlist-container">
+            <block
+                class="NTTData\Practice\Block\Product\Productlist"
+                name="nttdata_product_productlist"
+                template="NTTData_Practice::product/productlist.phtml" />
+        </container>        
+        <referenceContainer name="productlist">
+            <!-- container solo para meter encabezado y products dentro del container productlists -->
+            <!-- <container htmlTag="div" htmlClass="encabezado-products"> -->
+                <!-- container encabezado que hace referencia a productlist -->
+                <container name="encabezado" htmlTag="div" htmlClass="encabezado-container">
+                    <block
+                        class="NTTData\Practice\Block\Product\List\Encabezado"
+                        name="nttdata_product_list_encabezado"
+                        template="NTTData_Practice::product/list/encabezado.phtml" />
+                </container>
+                <!-- container products que hace referencia a productlist -->
+                <container name="products" htmlTag="div" htmlClass="products-container">
+                    <block
+                        class="NTTData\Practice\Block\Product\List\Products"
+                        name="nttdata_product_list_products"
+                        template="NTTData_Practice::product/list/products.phtml" />
+                </container>
+            <!-- </container> -->
+        </referenceContainer>
+        <container name="hour" htmlTag="div" htmlClass="hour-container">
+            <block
+                class="NTTData\Practice\Block\Time\Hour"
+                name="nttdata_time_hour"
+                template="NTTData_Practice::time/hour.phtml" />
+        </container>   
+    </referenceContainer>
+</page>
