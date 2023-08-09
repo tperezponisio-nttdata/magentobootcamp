@@ -1,0 +1,40 @@
+.pokemon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;    
+    justify-content: center;    
+}
+
+.pokemon-card {
+    width: 200px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.05);
+}
+
+.pokemon-image {
+    width: 100%;
+    display: block;
+}
+
+.pokemon-info {
+    padding: 12px;
+}
+
+.pokemon-info h3 {
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.pokemon-info p {
+    margin: 4px 0;
+    font-size: 14px;
+}

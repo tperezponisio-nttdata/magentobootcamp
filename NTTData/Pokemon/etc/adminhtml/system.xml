@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+
+		<tab id="catalog" translate="label" sortOrder="110">
+			<label>Catalog</label>
+		</tab>
+
+		<section id="pokemon" translate="label" type="text" sortOrder="2" showInDefault="1"
+			showInWebsite="1"
+			showInStore="1">
+			<class>separator-top</class>
+			<label>Pokemon</label>
+			<tab>catalog</tab>
+			<resource>NTTData_Pokemon::pokemon</resource>
+
+			<group id="params" translate="label" type="text" sortOrder="10" showInDefault="1"
+				showInWebsite="1"
+				showInStore="1">
+				<label>API Configuration</label>				
+
+				<field id="api_url" translate="label comment" type="text" sortOrder="1"
+					showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>API URL</label>
+					<comment>Enter API's url</comment>
+					<validate>validate-url</validate>
+				</field>
+
+                <field id="api_endpoint" translate="label comment" type="text" sortOrder="1"
+					showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>API Endpoint</label>
+					<comment>Enter API's Endpoint</comment>
+					<!-- <validate>validate-url</validate> -->
+				</field>
+
+                <field id="api_limit" translate="label comment" type="text" sortOrder="1"
+					showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>API Limit</label>
+					<comment>Enter API's limit 1 to 151 (how many pokemones)</comment>
+					<validate>validate-digits-range digits-range-1-151</validate>					
+				</field>
+
+			</group>
+		</section>
+	</system>
+</config>

@@ -1,0 +1,22 @@
+<?php
+/** @var \NTTData\Pokemon\Block\Index\Index $block */
+$pokemonList = $block->getPokemonList();
+
+
+echo '<div class="pokemon-container">';
+    foreach ($pokemonList as $pokemon) {
+        $details = $block->getPokemonDetails($pokemon['url']);
+        $regions = $block->getPokemonRegions($details['location_area_encounters']);
+        echo '<div class="pokemon-card">';
+            echo '<img class="pokemon-image" src="' . $block->getPokemonImage($details) . '" alt="' . $block->getPokemonName($details) . '"/>' ;
+            echo '<div class="pokemon-info">';
+            echo '<h3>' . $block->getPokemonName($details) . '</h3>';
+            echo '<p><strong>ID:</strong> ' . $block->getPokemonId($details) . '</p>';
+            echo '<p><strong>Type:</strong> ' . $block->getPokemonType($details) . '</p>';
+            echo '<p><strong>Height:</strong> ' . $block->getPokemonHeight($details) . '</p>';
+            echo '<p><strong>Weight:</strong> ' . $block->getPokemonWeight($details) . '</p>';
+            echo '<p><strong>Regions:</strong> ' . $regions . '</p>';
+            echo '</div>';
+        echo '</div>';
+    }       
+echo '</div>';
