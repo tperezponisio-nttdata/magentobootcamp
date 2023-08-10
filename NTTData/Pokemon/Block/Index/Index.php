@@ -32,7 +32,8 @@ class Index extends \Magento\Framework\View\Element\Template
         $this->responseFactory = $responseFactory;
         $this->helper = $helper;
         $this->apiUrl = $this->helper->getUrl();
-        $this->apiEndpoint = $this->helper->getEndpoint();
+        // ahora el offset esta al pedo, pero es para correr n veces desde donde empieza a traer info
+        $this->apiEndpoint = 'pokemon/?limit=20&offset=0';
     }
 
     private function doRequest(string $uriEndpoint, string $requestMethod = Request::HTTP_METHOD_GET): Response
@@ -59,9 +60,9 @@ class Index extends \Magento\Framework\View\Element\Template
         // 1. Check if the Pokemon details for the given URL is already set in the cache
         if (!isset($this->pokemonDetailsCache[$url])) {
             // 2. If not, perform a request to fetch the Pokemon details
-            $response = $this->doRequest(str_replace($this->apiUrl, '', $url));            
+            $response = $this->doRequest(str_replace($this->apiUrl, '', $url));
             $this->pokemonDetailsCache[$url] = json_decode($response->getBody()->getContents(), true);
-        }        
+        }
         return $this->pokemonDetailsCache[$url];
     }
 
@@ -95,11 +96,12 @@ class Index extends \Magento\Framework\View\Element\Template
         return $details['sprites']['other']['official-artwork']['front_default'];
     }
 
-    // No encuentro de donde salen las generaciones.    
     public function getPokemonGeneration(array $details): string
     {
-        // Placeholder
-        return '';
+        $generationsData = $details['sprites']['versions'];
+        $generations = array_keys($generationsData);
+
+        return ucfirst(implode(', ', $generations));
     }
 
     public function getPokemonRegions(string $encountersUrl): string

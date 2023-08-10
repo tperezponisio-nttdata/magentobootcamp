@@ -28,22 +28,6 @@
 					<validate>validate-url</validate>
 				</field>
 
-                <field id="api_endpoint" translate="label comment" type="text" sortOrder="1"
-					showInDefault="1"
-					showInWebsite="1" showInStore="1">
-					<label>API Endpoint</label>
-					<comment>Enter API's Endpoint</comment>
-					<!-- <validate>validate-url</validate> -->
-				</field>
-
-                <field id="api_limit" translate="label comment" type="text" sortOrder="1"
-					showInDefault="1"
-					showInWebsite="1" showInStore="1">
-					<label>API Limit</label>
-					<comment>Enter API's limit 1 to 151 (how many pokemones)</comment>
-					<validate>validate-digits-range digits-range-1-151</validate>					
-				</field>
-
 			</group>
 		</section>
 	</system>
