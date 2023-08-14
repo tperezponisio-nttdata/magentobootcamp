@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="nttdata_pokemon_cron_tareas">
+        <job
+            name="nttdata_pokemon_cron"    
+            instance="NTTData\Pokemon\Cron\Test"
+            method="execute">
+
+            <!-- A cada minuto todos los dias -->
+            <!-- <schedule>* * * * *</schedule> -->
+
+            <!-- Cada 5 minutos todos los dias -->
+            <!-- <schedule>*/5 * * * *</schedule> -->
+
+            <!-- Todos los dias a las 2 de la mañana -->
+            <schedule>0 2 * * *</schedule>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<schema
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <!-- <table name="pokemons" resource="default" engine="innodb">
+        <column
+            xsi:type="int"
+            name="id"
+            padding="10"
+            unsigned="true"
+            nullable="false"
+            identity="true"
+            comment="Pokemnon Id" />
+        <column
+            xsi:type="varchar"
+            name="name"
+            nullable="false"
+            length="25"
+            comment="Pokemon name" />
+        <column
+            xsi:type="varchar"
+            name="img_url"
+            nullable="false"
+            length="150"
+            comment="Img url" />
+        <column
+            xsi:type="varchar"
+            name="type"
+            nullable="false"
+            length="25"
+            comment="Pokemon type" />
+        <column
+            xsi:type="text"
+            name="generations"
+            nullable="false"            
+            comment="Pokemon generations" />
+        <column
+            xsi:type="text"
+            name="regions"
+            nullable="false"            
+            comment="Pokemon generations" />
+
+        <constraint
+            xsi:type="primary"
+            referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>
+
+    </table> -->
+</schema>

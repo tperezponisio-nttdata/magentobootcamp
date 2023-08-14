@@ -2,8 +2,6 @@
 
 namespace NTTData\Pokemon\Block\Index;
 
-// declare(strict_types=1);
-
 use Magento\Backend\Block\Template\Context;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientFactory;
@@ -33,11 +31,15 @@ class Index extends \Magento\Framework\View\Element\Template
         $this->helper = $helper;
         $this->apiUrl = $this->helper->getUrl();
         // ahora el offset esta al pedo, pero es para correr n veces desde donde empieza a traer info
-        $this->apiEndpoint = 'pokemon/?limit=20&offset=0';
+        $this->apiEndpoint = 'pokemon/';
     }
 
-    private function doRequest(string $uriEndpoint, string $requestMethod = Request::HTTP_METHOD_GET): Response
+    private function doRequest(string $uriEndpoint, int $limit = null, int $offset = null, string $requestMethod = Request::HTTP_METHOD_GET): Response
     {
+        // Adding the limit and offset parameters to the query if they are provided
+        if ($limit !== null && $offset !== null) {
+            $uriEndpoint .= '?limit=' . $limit . '&offset=' . $offset;
+        }
         $client = $this->clientFactory->create(['config' => ['base_uri' => $this->apiUrl]]);
         try {
             $response = $client->request($requestMethod, $uriEndpoint,);
@@ -48,9 +50,10 @@ class Index extends \Magento\Framework\View\Element\Template
     }
 
     // Traigo un array de pokemones.
-    public function getPokemonList(): array
-    {
-        $response = $this->doRequest($this->apiEndpoint);
+    public function getPokemonList(int $limit = null, int $offset = null): array
+    {        
+        // si me pasan limite y offset se pasan a doRequest, si no sale con los valores por default, limit = 20 y offset = 0
+        $response = $this->doRequest($this->apiEndpoint, $limit, $offset);
         return json_decode($response->getBody()->getContents(), true)['results'];
     }
 
@@ -120,5 +123,24 @@ class Index extends \Magento\Framework\View\Element\Template
         }
 
         return ucwords(implode(', ', $regions));
+    }
+
+    // Traigo la info de un pokemon que voy a guardar en la db por su id
+    // Datos que traigo: id / name / img_url / type / generations / regions
+    public function getPokemonDetailsById(int $id): array
+    {
+        $urlEndpoint = $this->apiEndpoint . $id;
+        $response = $this->doRequest($urlEndpoint);
+        $details = json_decode($response->getBody()->getContents(), true);
+        $pokemonDetails = [
+            // ID lo dejo comentado porque si no no guarda en la db
+            // 'id' => $id,
+            'name' => $this->getPokemonName($details),
+            'img_url' => $this->getPokemonImage($details),
+            'type' => $this->getPokemonType($details),
+            'generations' => $this->getPokemonGeneration($details),
+            'regions' => $this->getPokemonRegions($details['location_area_encounters'])
+        ];
+        return $pokemonDetails;
     }
 }
