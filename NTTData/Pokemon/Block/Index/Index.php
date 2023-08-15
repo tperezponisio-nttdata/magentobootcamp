@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ResponseFactory;
 use Magento\Framework\Webapi\Rest\Request;
 use NTTData\Pokemon\Helper\Data;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Index extends \Magento\Framework\View\Element\Template
 {
@@ -18,20 +19,22 @@ class Index extends \Magento\Framework\View\Element\Template
     private $clientFactory;
     private $apiUrl;
     private $apiEndpoint;
+    protected $storeManager;
 
     public function __construct(
         Context $context,
         ClientFactory $clientFactory,
         ResponseFactory $responseFactory,
-        Data $helper
+        Data $helper,
+        StoreManagerInterface $storeManager
     ) {
         parent::__construct($context);
         $this->clientFactory = $clientFactory;
         $this->responseFactory = $responseFactory;
         $this->helper = $helper;
         $this->apiUrl = $this->helper->getUrl();
-        // ahora el offset esta al pedo, pero es para correr n veces desde donde empieza a traer info
-        $this->apiEndpoint = 'pokemon/';
+        $this->apiEndpoint = 'pokemon/'; // ahora el offset esta al pedo, pero es para correr n veces desde donde empieza a traer info
+        $this->storeManager = $storeManager;
     }
 
     private function doRequest(string $uriEndpoint, int $limit = null, int $offset = null, string $requestMethod = Request::HTTP_METHOD_GET): Response
@@ -52,6 +55,9 @@ class Index extends \Magento\Framework\View\Element\Template
     // Traigo un array de pokemones.
     public function getPokemonList(int $limit = null, int $offset = null): array
     {        
+        if (!$this->storeViewChecker()) {
+            return []; // Devuelve un array vacío si el Store View no es el correcto
+        }
         // si me pasan limite y offset se pasan a doRequest, si no sale con los valores por default, limit = 20 y offset = 0
         $response = $this->doRequest($this->apiEndpoint, $limit, $offset);
         return json_decode($response->getBody()->getContents(), true)['results'];
@@ -142,5 +148,14 @@ class Index extends \Magento\Framework\View\Element\Template
             'regions' => $this->getPokemonRegions($details['location_area_encounters'])
         ];
         return $pokemonDetails;
+    }
+
+    private function storeViewChecker(): bool
+    {
+        $storeViewCode = $this->storeManager->getStore()->getCode();
+        if ($storeViewCode != 'pokemons_store_view') {
+            return false;
+        }
+        return true;
     }
 }

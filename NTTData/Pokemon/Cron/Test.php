@@ -43,7 +43,7 @@ class Test
             $details = $this->apiManager->getPokemonDetails($pokemon['url']);
             $model = $this->pokemonsFactory->create();
             $id = $this->apiManager->getPokemonId($details);
-            $model->setData($this->apiManager->getPokemonDetailsById($id));            
+            $model->setData($this->apiManager->getPokemonDetailsById($id));              
             $model->save();
         }
 
