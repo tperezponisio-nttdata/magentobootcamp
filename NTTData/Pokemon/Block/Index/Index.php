@@ -55,9 +55,9 @@ class Index extends \Magento\Framework\View\Element\Template
     // Traigo un array de pokemones.
     public function getPokemonList(int $limit = null, int $offset = null): array
     {        
-        if (!$this->storeViewChecker()) {
-            return []; // Devuelve un array vacío si el Store View no es el correcto
-        }
+        // if (!$this->storeViewChecker()) {
+        //     return []; // Devuelve un array vacío si el Store View no es el correcto
+        // }
         // si me pasan limite y offset se pasan a doRequest, si no sale con los valores por default, limit = 20 y offset = 0
         $response = $this->doRequest($this->apiEndpoint, $limit, $offset);
         return json_decode($response->getBody()->getContents(), true)['results'];
