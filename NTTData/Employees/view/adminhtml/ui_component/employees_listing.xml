@@ -118,7 +118,7 @@
             </settings>
         </column>
 
-        <column name="date_of_birth">
+        <!-- <column name="date_of_birth">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Date of birth</label>
@@ -144,6 +144,30 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">Role Type Description</label>
+                <sortable>true</sortable>
+            </settings>
+        </column> -->
+
+        <column name="employment_type">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Employment Type</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="start_date">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Start Date</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="health_insurance_provider">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Health Insurance Provider</label>
                 <sortable>true</sortable>
             </settings>
         </column>

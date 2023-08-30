@@ -32,7 +32,7 @@ class Save extends Action
         $data = $this->getRequest()->getPostValue();
         try {
             if ($data) {
-                $model = $this->EmployeesFactory->create();
+                $model = $this->EmployeesFactory->create();                
                 $model->setData($data)->save();
                 $this->messageManager->addSuccessMessage(__("Employee Saved Successfully."));
                 $buttondata = $this->getRequest()->getParam('back');

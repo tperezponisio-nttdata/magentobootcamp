@@ -1,0 +1,76 @@
+<?php /** @var \NTTData\Employees\Block\Adminhtml\Employees\View $block */ ?>
+
+<?php $employee = $block->getEmployeeData(); ?>
+<?php $employeeHealthInsuranceProvider = $block->getEmployeeHealthInsuranceProvider(); ?>
+<?php $employeeHealthInsurancePlan = $block->getEmployeeHealthInsurancePlan(); ?>
+<?php $employeeRole = $block->getEmployeeRole(); ?>
+<?php $employeeRoleType = $block->getEmployeeRoleType(); ?>
+<?php if ($employee): ?>
+
+    <section class="admin__page-section order-view-account-information">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $block->escapeHtml(__('Employee Information')) ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="admin__page-section-item order-information">
+                <div class="admin__page-section-item-title">
+                    <span class="title">
+                        <?= $block->escapeHtml(__('Work Information')) ?>
+                    </span>
+                </div>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                    <tr>
+                            <th><?= $block->escapeHtml(__('Role')) ?></th>
+                            <td><?= $block->escapeHtml($employeeRole->getDescription()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Role Type')) ?></th>
+                            <td><?= $block->escapeHtml($employeeRoleType->getDescription()) ?></td>
+                        </tr>    
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Work Schedule')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getWorkSchedule()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Seniority')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getSeniority()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Employment Type')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getEmploymentType()) ?></td>
+                        </tr>                      
+                    </table>
+                </div>
+            </div>
+
+            <div class="admin__page-section-item order-account-information">
+                <div class="admin__page-section-item-title">
+                    <span class="title">
+                        <?= $block->escapeHtml(__('Vacation Information')) ?>
+                    </span>
+                </div>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-account-information-table">                        
+                                
+                            <th><?= $block->escapeHtml(__('Start Date')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getStartDate()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Leaving Date')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getLeavingDate()) ?></td>
+                        </tr>                       
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Vacation Days')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getVacationDays()) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+<?php else: ?>
+    <p>No employee data found.</p>
+<?php endif; ?>
+

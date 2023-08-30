@@ -1,0 +1,88 @@
+<?php /** @var \NTTData\Employees\Block\Adminhtml\Employees\View $block */ ?>
+
+<?php $employee = $block->getEmployeeData(); ?>
+<?php $employeeHealthInsuranceProvider = $block->getEmployeeHealthInsuranceProvider(); ?>
+<?php $employeeHealthInsurancePlan = $block->getEmployeeHealthInsurancePlan(); ?>
+<?php $employeeRole = $block->getEmployeeRole(); ?>
+<?php $employeeRoleType = $block->getEmployeeRoleType(); ?>
+<?php if ($employee): ?>
+
+    <section class="admin__page-section order-view-account-information">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $block->escapeHtml(__('Employee Information')) ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="admin__page-section-item order-information">
+                <div class="admin__page-section-item-title">
+                    <span class="title">
+                        <?= $block->escapeHtml(__('Personal Information')) ?>
+                    </span>
+                </div>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Name')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getName()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Last Name')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getLastName()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Date of Birth')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getDateOfBirth()) ?></td>
+                        </tr>                        
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Address')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getAddress()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Phone')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getPhone()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Family Composition')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getFamilyComposition()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Education')) ?></th>
+                            <td><?= $block->escapeHtml($employee->getEducation()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Health Insurance Provider')) ?></th>
+                            <td><?= $block->escapeHtml($employeeHealthInsuranceProvider->getProvider()) ?></td>
+                        </tr>                       
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Health Insurance Plan')) ?></th>
+                            <td><?= $block->escapeHtml($employeeHealthInsurancePlan->getPlan()) ?></td>
+                        </tr>                       
+                    </table>
+                </div>
+            </div>
+
+            <div class="admin__page-section-item order-account-information">
+                <div class="admin__page-section-item-title">
+                    <span class="title">
+                        <?= $block->escapeHtml(__('Health Insurance Information')) ?>
+                    </span>
+                </div>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-account-information-table">                        
+                    <tr>
+                            <th><?= $block->escapeHtml(__('Health Insurance Provider')) ?></th>
+                            <td><?= $block->escapeHtml($employeeHealthInsuranceProvider->getProvider()) ?></td>
+                        </tr>                       
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Health Insurance Plan')) ?></th>
+                            <td><?= $block->escapeHtml($employeeHealthInsurancePlan->getPlan()) ?></td>
+                        </tr>                       
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+<?php else: ?>
+    <p>No employee data found.</p>
+<?php endif; ?>
+

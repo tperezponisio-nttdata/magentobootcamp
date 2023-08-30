@@ -49,12 +49,18 @@ class Collection extends EmployeesCollection implements SearchResultInterface
                 'main_table.id_role_type = thirdTable.id',
                 ['role_type_description' => 'thirdTable.description']
             )
+            ->joinLeft(
+                ['fourthTable' => $this->getTable('health_insurance_provider')],
+                'main_table.id_health_insurance_provider = fourthTable.id',
+                ['health_insurance_provider' => 'fourthTable.provider']
+            )
             ->columns(new \Zend_Db_Expr("TIMESTAMPDIFF(YEAR, main_table.date_of_birth, CURDATE()) AS age")); // agrega la columna age haciendo la diferencia de años entre current date y la date of birth            
 
         // Agrego los filtros para id, role y role description
         $this->addFilterToMap('id', 'main_table.id');
         $this->addFilterToMap('role_description', 'secondTable.description');
         $this->addFilterToMap('role_type_description', 'thirdTable.description');
+        $this->addFilterToMap('health_insurance_provider', 'fourthTable.provider');
 
         return $this;
     }

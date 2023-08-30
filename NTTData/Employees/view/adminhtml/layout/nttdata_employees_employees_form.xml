@@ -5,6 +5,7 @@
     <head>      
         <link src="NTTData_Employees::js/custom_validation.js"/>
         <link src="NTTData_Employees::js/role_type.js"/>
+        <link src="NTTData_Employees::js/health_insurance_plan.js"/>
     </head>
     <body>
         <referenceContainer name="content">

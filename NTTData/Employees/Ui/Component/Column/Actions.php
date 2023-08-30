@@ -12,6 +12,7 @@ class Actions extends Column
 
     const URL_PATH_EDIT = 'nttdata_employees/employees/form';
     const URL_PATH_DELETE = 'nttdata_employees/employees/delete';
+    const URL_PATH_VIEW = 'nttdata_employees/employees/view';
 
     protected $urlBuilder;
 
@@ -32,27 +33,14 @@ class Actions extends Column
             foreach ($dataSource['data']['items'] as &$item) {
                 if (isset($item['id'])) {
                     $item[$this->getData('name')] = [
-                        'edit' => [
+                        'view' => [
                             'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_EDIT,
+                                static::URL_PATH_VIEW,
                                 [
                                     'id' => $item['id'],
                                 ]
                             ),
-                            'label' => __('Edit'),
-                        ],
-                        'delete' => [
-                            'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_DELETE,
-                                [
-                                    'id' => $item['id'],
-                                ]
-                            ),
-                            'label' => __('Delete'),
-                            'confirm' => [
-                                'title' => __('Delete Employee ?'),
-                                'message' => __('Are you sure you wan\'t to delete this employee?'),
-                            ],
+                            'label' => __('View'),
                         ],
                     ];
                 }

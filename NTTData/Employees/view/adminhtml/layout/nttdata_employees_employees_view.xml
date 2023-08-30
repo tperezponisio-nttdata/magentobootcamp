@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<page
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    layout="admin-2columns-left"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+
+        <referenceContainer name="content">
+            <block
+                class="NTTData\Employees\Block\Adminhtml\Employees\View"
+                name="nttdata_employees_view" />
+        </referenceContainer>
+
+        <referenceContainer name="left">
+            <block class="NTTData\Employees\Block\Adminhtml\Employees\Tabs"
+                name="nttdata_employees_tabs">
+                <!-- <block class="Magento\Sales\Block\Adminhtml\Order\View\Tabs"
+                name="sales_order_tabs"> -->
+                <block class="NTTData\Employees\Block\Adminhtml\Employees\Tab\Info"
+                    name="nttdata_employees_tab_info"
+                    template="NTTData_Employees::view/tab/info.phtml">
+                </block>
+                <block class="NTTData\Employees\Block\Adminhtml\Employees\Tab\WorkInfo"
+                    name="nttdata_employees_tab_work_info"
+                    template="NTTData_Employees::view/tab/workinfo.phtml">
+                </block>
+            </block>
+            <referenceBlock name="nttdata_employees_tabs">
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">employees_info</argument>
+                    <argument name="block" xsi:type="string">nttdata_employees_tab_info</argument>
+                </action>
+            </referenceBlock>
+            <referenceBlock name="nttdata_employees_tabs">
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">employees_info_otra_tab</argument>
+                    <argument name="block" xsi:type="string">nttdata_employees_tab_work_info</argument>
+                </action>
+            </referenceBlock>
+
+        </referenceContainer>
+
+
+    </body>
+</page>

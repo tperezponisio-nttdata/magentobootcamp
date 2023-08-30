@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="nttdata_employees_cron_vacation_days">
+        <job
+            name="nttdata_employees_cron"
+            instance="NTTData\Employees\Cron\VacationDays"
+            method="execute">
+
+            <!-- A las 2:00 AM el primer dia de cada mes -->
+            <schedule>0 2 1 * *</schedule>
+        </job>
+    </group>
+</config>
